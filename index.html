@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kpop星光抽卡 - 收集你的偶像</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-bg"></div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 顶部导航 -->
+        <header class="header">
+            <h1 class="logo">✨ Kpop星光抽卡 ✨</h1>
+            <div class="user-info">
+                <div class="coins">
+                    <span class="coin-icon">💎</span>
+                    <span id="coinCount">1000</span>
+                </div>
+                <div class="collection-btn" onclick="showCollection()">
+                    <span>📚 图鉴</span>
+                    <span id="collectionCount">0/24</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主抽卡区域 -->
+        <main class="main-area">
+            <!-- 抽卡展示区 -->
+            <div class="card-display" id="cardDisplay">
+                <div class="placeholder-card">
+                    <div class="question-mark">?</div>
+                    <p>点击下方按钮抽取卡片</p>
+                </div>
+            </div>
+
+            <!-- 抽卡按钮区 -->
+            <div class="gacha-buttons">
+                <button class="gacha-btn single" onclick="drawCard(1)">
+                    <span class="btn-icon">🎴</span>
+                    <span class="btn-text">单抽</span>
+                    <span class="btn-cost">💎 100</span>
+                </button>
+                <button class="gacha-btn ten" onclick="drawCard(10)">
+                    <span class="btn-icon">🎉</span>
+                    <span class="btn-text">十连抽</span>
+                    <span class="btn-cost">💎 900</span>
+                    <span class="btn-discount">省100!</span>
+                </button>
+            </div>
+
+            <!-- 概率显示 -->
+            <div class="probability-info">
+                <h3>📜 卡片稀有度概率</h3>
+                <div class="prob-list">
+                    <div class="prob-item common">
+                        <span class="star">⭐</span>
+                        <span class="rarity-name">普通</span>
+                        <span class="prob-value">60%</span>
+                    </div>
+                    <div class="prob-item rare">
+                        <span class="star">⭐⭐</span>
+                        <span class="rarity-name">稀有</span>
+                        <span class="prob-value">25%</span>
+                    </div>
+                    <div class="prob-item epic">
+                        <span class="star">⭐⭐⭐</span>
+                        <span class="rarity-name">史诗</span>
+                        <span class="prob-value">12%</span>
+                    </div>
+                    <div class="prob-item legendary">
+                        <span class="star">⭐⭐⭐⭐</span>
+                        <span class="rarity-name">传说</span>
+                        <span class="prob-value">3%</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 最近获得 -->
+        <section class="recent-section">
+            <h2>🌟 最近获得</h2>
+            <div class="recent-cards" id="recentCards">
+                <p class="empty-tip">还没有抽到卡片，快去抽卡吧！</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- 图鉴弹窗 -->
+    <div class="modal" id="collectionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📚 我的图鉴</h2>
+                <button class="close-btn" onclick="closeCollection()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="collection-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">收集进度</span>
+                        <span class="stat-value" id="progressValue">0/24</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">总卡片数</span>
+                        <span class="stat-value" id="totalCards">0</span>
+                    </div>
+                </div>
+                <div class="collection-grid" id="collectionGrid">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 十连抽结果弹窗 -->
+    <div class="modal" id="multiDrawModal">
+        <div class="modal-content multi-draw">
+            <div class="modal-header">
+                <h2>🎉 十连抽结果</h2>
+                <button class="close-btn" onclick="closeMultiDraw()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="multi-cards-grid" id="multiCardsGrid">
+                    <!-- 动态生成 -->
+                </div>
+                <div class="summary">
+                    <p id="drawSummary"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片详情弹窗 -->
+    <div class="modal" id="cardDetailModal">
+        <div class="modal-content card-detail">
+            <button class="close-btn" onclick="closeCardDetail()">&times;</button>
+            <div class="detail-card" id="detailCardContent">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
